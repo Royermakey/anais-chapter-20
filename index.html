@@ -615,112 +615,58 @@ const musicBtn = document.getElementById('musicBtn');
 const introGate = document.getElementById('introGate');
 const startButton = document.getElementById('startButton');
 
+
+// MÚSICA
+
+const birthdayAudio = document.getElementById('birthdayAudio');
+const musicBtn = document.getElementById('musicBtn');
+
 let musicStarted = false;
-let experienceStarted = false;
-
-// INTENTAR REPRODUCIR AL ABRIR LA PÁGINA
-
-window.addEventListener('load', async () => {
-
-  try {
-
-    await birthdayAudio.play();
-
-    musicStarted = true;
-
-    updateMusicButton();
-
-    // Si el navegador permite el sonido automático,
-    // se muestra directamente la primera pantalla.
-
-    introGate.classList.add('hidden');
-    experienceStarted = true;
-
-  } catch (error) {
-
-    // Si el navegador bloquea el sonido,
-    // se mantiene la bienvenida para que la visitante
-    // pueda iniciar la música con un solo toque.
-
-    console.log('El navegador requiere una interacción para reproducir audio.');
-
-    startButton.textContent = 'ENTRAR Y COMENZAR ♫';
-
-  }
-
-});
-
-// INICIAR TODA LA EXPERIENCIA
 
 async function startExperience() {
 
-  if (experienceStarted) return;
-
-  startButton.disabled = true;
-  startButton.textContent = 'PREPARANDO TU SORPRESA...';
-
-  try {
-
-    await birthdayAudio.play();
-
-    musicStarted = true;
-    experienceStarted = true;
-
-    updateMusicButton();
-
-    introGate.classList.add('hidden');
-
-  } catch (error) {
-
-    startButton.disabled = false;
-    startButton.textContent = 'INTENTAR DE NUEVO ♫';
-
-    console.error('No se pudo iniciar la música:', error);
-
+  // Iniciar música en el mismo clic del visitante.
+  if (!musicStarted) {
+    try {
+      await birthdayAudio.play();
+      musicStarted = true;
+      updateMusicButton();
+    } catch (error) {
+      console.error('No se pudo reproducir la música:', error);
+      alert('No se pudo iniciar la música. Inténtalo nuevamente.');
+      return;
+    }
   }
 
+  // Pasar a la segunda pantalla.
+  nextScreen(2);
 }
 
-// BOTÓN DE MÚSICA
+// PAUSAR Y REANUDAR
 
 async function toggleMusic() {
 
   if (birthdayAudio.paused) {
-
     try {
-
       await birthdayAudio.play();
-
-      musicStarted = true;
-
     } catch (error) {
-
       console.error('Error al reproducir:', error);
-
     }
-
   } else {
-
     birthdayAudio.pause();
-
   }
 
   updateMusicButton();
-
 }
 
 function updateMusicButton() {
 
   if (birthdayAudio.paused) {
-
     musicBtn.textContent = '♪';
     musicBtn.title = 'Reproducir música';
-
   } else {
-
     musicBtn.textContent = '♫';
     musicBtn.title = 'Pausar música';
-
   }
 
 }
@@ -743,7 +689,6 @@ function nextScreen(number) {
   }
 
   window.scrollTo(0, 0);
-
 }
 
 // VELAS
