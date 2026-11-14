@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08070b">
+<title>Anaís | Chapter 20</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --gold: #e8c77d;
+  --gold-light: #fff0c5;
+  --black: #08070b;
+  --white: #fffaf0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% 45%, #282016 0%, #100e10 48%, #050509 100%);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  background-image:
+    radial-gradient(#e8c77d 0.7px, transparent 0.7px);
+  background-size: 32px 32px;
+  z-index: 0;
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.screen {
+  min-height: 100vh;
+  width: 100%;
+  display: none;
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 35px 20px;
+  text-align: center;
+  animation: appear 1s ease;
+}
+
+.screen.active {
+  display: flex;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+h1, h2, .serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+h1 {
+  font-size: clamp(65px, 15vw, 125px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 5px;
+  color: var(--gold-light);
+  text-shadow: 0 0 35px #d9a94c66;
+}
+
+.subtitle {
+  font-size: 12px;
+  letter-spacing: 8px;
+  color: #cbbd9e;
+  margin-top: 15px;
+}
+
+.line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 30px auto;
+}
+
+.description {
+  color: #c5bcae;
+  font-size: 13px;
+  line-height: 2;
+  max-width: 420px;
+}
+
+button {
+  cursor: pointer;
+  border: 1px solid #d8b96e;
+  background: linear-gradient(120deg, #e8c77d, #b78b42);
+  color: #17110a;
+  padding: 15px 30px;
+  border-radius: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .35s;
+  margin-top: 35px;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 35px #d8b96e55;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--gold);
+}
+
+.small {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #928774;
+  margin-top: 30px;
+}
+
+.number {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: clamp(37px, 8vw, 65px);
+  font-weight: 500;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+}
+
+.card {
+  width: min(440px, 95%);
+  padding: 35px 25px;
+  border: 1px solid #b99b5944;
+  background: linear-gradient(145deg, #ffffff08, #b9953510);
+  box-shadow: 0 20px 80px #0008;
+  backdrop-filter: blur(12px);
+}
+
+/* Pastel */
+
+.cake-area {
+  position: relative;
+  width: 270px;
+  height: 240px;
+  margin: 25px auto;
+}
+
+.plate {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 250px;
+  height: 15px;
+  border-radius: 50%;
+  background: linear-gradient(#f4e4bd, #997441);
+  box-shadow: 0 10px 30px #0008;
+}
+
+.cake-bottom {
+  position: absolute;
+  bottom: 25px;
+  left: 40px;
+  width: 190px;
+  height: 75px;
+  border-radius: 10px 10px 18px 18px;
+  background: linear-gradient(90deg, #9c603d, #f3d4aa, #a86d45);
+  box-shadow: inset 0 -12px 0 #78432e;
+}
+
+.cake-top {
+  position: absolute;
+  bottom: 94px;
+  left: 35px;
+  width: 200px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #fff0cf, #d8b77c);
+  border-bottom: 8px solid #bd8c57;
+}
+
+.candle {
+  position: absolute;
+  bottom: 135px;
+  left: 129px;
+  height: 48px;
+  width: 11px;
+  background: repeating-linear-gradient(
+    45deg, #f8e8bd 0px, #f8e8bd 6px,
+    #b88b42 6px, #b88b42 10px
+  );
+  border-radius: 3px;
+}
+
+.flame {
+  position: absolute;
+  bottom: 183px;
+  left: 128px;
+  width: 13px;
+  height: 23px;
+  background: radial-gradient(ellipse at 50% 70%, #fffbd0, #ffad24 55%, #ff6200);
+  border-radius: 50% 50% 40% 40%;
+  transform-origin: bottom;
+  animation: flicker .7s infinite alternate;
+  filter: drop-shadow(0 0 10px #ffb52c);
+}
+
+@keyframes flicker {
+  from { transform: rotate(-5deg) scale(.9); }
+  to { transform: rotate(5deg) scale(1.1); }
+}
+
+.flame.off {
+  display: none;
+}
+
+.cake-text {
+  position: absolute;
+  bottom: 53px;
+  left: 0;
+  width: 100%;
+  color: #fff0d0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  text-shadow: 0 2px 5px #44220e;
+}
+
+/* Regalo */
+
+.gift {
+  font-size: 110px;
+  margin: 20px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 25px #d9b35d55);
+  animation: giftFloat 2s infinite ease-in-out;
+}
+
+@keyframes giftFloat {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.gift-message {
+  display: none;
+  line-height: 2;
+  color: #e5d9c3;
+  font-size: 13px;
+  max-width: 380px;
+  margin: 20px auto;
+  animation: appear 1s;
+}
+
+/* Confeti */
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  width: 7px;
+  height: 12px;
+  z-index: 10;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(900deg); opacity: 0; }
+}
+
+footer {
+  position: fixed;
+  z-index: 3;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #746b5c;
+  font-size: 8px;
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+
+.music-control {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 20;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #d8b96e66;
+  background: #17130c;
+  color: var(--gold);
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+}
+
+@media(max-width:480px) {
+  .eyebrow { letter-spacing: 3px; }
+  .subtitle { letter-spacing: 5px; }
+  .card { padding: 28px 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<button class="music-control" id="musicBtn" onclick="toggleMusic()" title="Música">♫</button>
+
+<!-- PANTALLA 1 -->
+
+<section class="screen active" id="screen1">
+  <div class="eyebrow">A special celebration</div>
+
+  <h1>ANAÍS</h1>
+
+  <div class="subtitle">CHAPTER TWENTY</div>
+
+  <div class="line"></div>
+
+  <p class="description">
+    Hay momentos que merecen celebrarse<br>
+    de una manera diferente...
+    <br><br>
+    Y esta pequeña sorpresa<br>
+    está preparada especialmente para ti.
+  </p>
+
+  <button onclick="nextScreen(2)">DESCUBRIR MI SORPRESA ✦</button>
+
+  <div class="small">13 NOVEMBER · A NEW CHAPTER</div>
+</section>
+
+<!-- PANTALLA 2 -->
+
+<section class="screen" id="screen2">
+  <div class="number">01 — UNA NUEVA ETAPA</div>
+
+  <h2>¡Felices 20 años!</h2>
+
+  <div class="line"></div>
+
+  <p class="description">
+    Veinte años de historias, aprendizajes,
+    sueños y nuevas oportunidades.
+    <br><br>
+    Que esta nueva etapa venga acompañada
+    de momentos inolvidables,
+    personas especiales y muchas razones
+    para sonreír.
+  </p>
+
+  <button onclick="nextScreen(3)">CONTINUAR ✦</button>
+</section>
+
+<!-- PANTALLA 3 -->
+
+<section class="screen" id="screen3">
+  <div class="number">02 — UN DESEO ESPECIAL</div>
+
+  <h2>Un deseo para ti</h2>
+
+  <p class="description">
+    Antes de continuar, hay algo que debes hacer...
+    <br><br>
+    Pide un deseo y prepárate para
+    soplar las velas.
+  </p>
+
+  <div class="cake-area">
+    <div class="plate"></div>
+    <div class="cake-bottom"></div>
+    <div class="cake-top"></div>
+    <div class="candle"></div>
+    <div class="flame" id="flame"></div>
+    <div class="cake-text">Anaís</div>
+  </div>
+
+  <button id="blowBtn" onclick="blowCandles()">APAGAR LAS VELAS ✦</button>
+
+  <p class="small" id="cakeMessage">TU DESEO COMIENZA AQUÍ</p>
+</section>
+
+<!-- PANTALLA 4 -->
+
+<section class="screen" id="screen4">
+  <div class="number">03 — UNA PEQUEÑA SORPRESA</div>
+
+  <h2>Hay algo para ti...</h2>
+
+  <p class="description">
+    No todos los regalos vienen envueltos
+    en papel.
+    <br><br>
+    Algunos simplemente esperan
+    a ser descubiertos.
+  </p>
+
+  <div class="gift" id="gift" onclick="openGift()">🎁</div>
+
+  <p class="small">PULSA EL REGALO PARA ABRIRLO</p>
+
+  <div class="gift-message" id="giftMessage">
+    <h2 style="font-size:35px">✨ Para Anaís ✨</h2>
+    Que nunca te falten motivos para soñar,
+    valentía para perseguir tus metas
+    y alegría para disfrutar cada etapa.
+    <br><br>
+    ¡Que tus 20 sean el comienzo de
+    cosas maravillosas!
+  </div>
+
+  <button id="continueGift" style="display:none" onclick="nextScreen(5)">
+    VER MENSAJE FINAL
+  </button>
+</section>
+
+<!-- PANTALLA 5 -->
+
+<section class="screen" id="screen5">
+  <div class="eyebrow">A NEW CHAPTER BEGINS</div>
+
+  <h1 style="font-size:clamp(55px,12vw,95px)">ANAÍS</h1>
+
+  <div class="subtitle">TWENTY YEARS</div>
+
+  <div class="line"></div>
+
+  <div class="card">
+    <h2 style="font-size:40px">¡Feliz cumpleaños!</h2>
+
+    <p class="description">
+      Que la vida te sorprenda con experiencias
+      bonitas, que cumplas tus sueños
+      y que cada año encuentres nuevas
+      razones para ser feliz.
+      <br><br>
+      Disfruta mucho esta nueva etapa.
+      <br><br>
+      <strong style="color:#e8c77d">
+        Con mucho cariño,<br>
+        tu primo.
+      </strong>
+    </p>
+  </div>
+
+  <button onclick="celebrate()">CELEBRAR ✦</button>
+
+  <div class="small">END OF EXPERIENCE · BEGINNING OF EVERYTHING</div>
+</section>
+
+<footer>MADE WITH GOOD WISHES · 2026</footer>
+
+<script>
+// NAVEGACIÓN
+
+function nextScreen(number) {
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active');
+  });
+
+  document.getElementById('screen' + number).classList.add('active');
+
+  if (number === 5) {
+    confetti(100);
+  }
+
+  window.scrollTo(0, 0);
+}
+
+// VELAS
+
+function blowCandles() {
+  document.getElementById('flame').classList.add('off');
+
+  document.getElementById('cakeMessage').textContent =
+    '✨ ¡QUE TODOS TUS DESEOS SE CUMPLAN! ✨';
+
+  document.getElementById('blowBtn').textContent = '¡LO LOGRASTE!';
+
+  document.getElementById('blowBtn').disabled = true;
+
+  confetti(45);
+
+  setTimeout(() => nextScreen(4), 2200);
+}
+
+// REGALO
+
+function openGift() {
+  const gift = document.getElementById('gift');
+
+  gift.textContent = '🎉';
+
+  gift.style.animation = 'none';
+
+  document.getElementById('giftMessage').style.display = 'block';
+
+  document.querySelector('#screen4 .small').style.display = 'none';
+
+  document.getElementById('continueGift').style.display = 'inline-block';
+
+  confetti(65);
+}
+
+// CONFETI
+
+function confetti(amount) {
+  const colors = ['#e8c77d','#fff0c5','#c59a4d','#ffffff','#d9a7a0'];
+
+  for (let i = 0; i < amount; i++) {
+    const piece = document.createElement('div');
+
+    piece.className = 'confetti';
+
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.animationDuration = (3 + Math.random()*4) + 's';
+    piece.style.animationDelay = Math.random() * 1.5 + 's';
+
+    document.body.appendChild(piece);
+
+    setTimeout(() => piece.remove(), 8500);
+  }
+}
+
+function celebrate() {
+  confetti(180);
+}
+
+// PARTÍCULAS DORADAS
+
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+for (let i = 0; i < 85; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2 + .4,
+    speed: Math.random() * .35 + .1,
+    opacity: Math.random() * .7 + .2
+  });
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    p.y -= p.speed;
+
+    if (p.y < 0) {
+      p.y = canvas.height;
+      p.x = Math.random() * canvas.width;
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(232,199,125,${p.opacity})`;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = '#e8c77d';
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+// MÚSICA ORIGINAL GENERADA CON WEB AUDIO
+
+let audioContext;
+let musicTimer;
+let musicPlaying = false;
+let noteIndex = 0;
+
+const melody = [
+  261.63, 329.63, 392.00, 329.63,
+  293.66, 349.23, 440.00, 349.23,
+  261.63, 329.63, 392.00, 523.25,
+  440.00, 392.00, 329.63, 293.66
+];
+
+function playNote() {
+  if (!musicPlaying || !audioContext) return;
+
+  const frequency = melody[noteIndex % melody.length];
+
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+
+  oscillator.type = 'sine';
+  oscillator.frequency.value = frequency;
+
+  gain.gain.setValueAtTime(.0001, audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.055, audioContext.currentTime + .08);
+  gain.gain.exponentialRampToValueAtTime(.0001, audioContext.currentTime + .65);
+
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime + .7);
+
+  noteIndex++;
+}
+
+async function toggleMusic() {
+  const btn = document.getElementById('musicBtn');
+
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
+  if (audioContext.state === 'suspended') {
+    await audioContext.resume();
+  }
+
+  musicPlaying = !musicPlaying;
+
+  if (musicPlaying) {
+    btn.textContent = '♫';
+    playNote();
+    musicTimer = setInterval(playNote, 550);
+  } else {
+    btn.textContent = '♪';
+    clearInterval(musicTimer);
+  }
+}
+</script>
+
+</body>
+</html>
